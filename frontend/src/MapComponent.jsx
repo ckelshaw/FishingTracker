@@ -13,7 +13,7 @@ function MapComponent(props) {
 
   return (
     <>
-        <APIProvider apiKey="AIzaSyCOuW5cj8QqZGDDG232VlN75-OCuAqubvg">
+        <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
         <Map
             style={{ borderRadius: "20px", height: "175px", width: "100%" }}
             defaultZoom={13}
