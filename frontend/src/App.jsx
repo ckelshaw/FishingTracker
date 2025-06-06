@@ -5,37 +5,36 @@ import ListOfTrips from './ListOfTrips'
 import NavBar from './NavBar'
 import MapComponent from './MapComponent'
 import { APIProvider } from '@vis.gl/react-google-maps'
+import TripCard from './TripCard'
 
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY)
 
 function App() {
-  const [users, setUsers] = useState([]);
+  const [trips, setTrips] = useState([]);
 
   useEffect(() => {
-    getUsers();
+    getTrips();
   }, []);
 
-  async function getUsers() {
-    const { data } = await supabase.from("user").select();
-    console.log(data);
-    setUsers(data);
+  async function getTrips() {
+    const { data } = await supabase.from("fishing_trip").select();
+    setTrips(data);
   }
 
   return (
     <>
       <NavBar></NavBar>
       <div>
-        <ListOfTrips>
-          <MapComponent></MapComponent>
-        </ListOfTrips>
+        <ul>
+          {trips.map((trip) => (
+            <li key={trip.id}>
+              <TripCard trip={trip} />
+            </li>
+          ))}
+        </ul>
         
       </div>
       <br/>
-      <ul>
-      {users.map((user, index) => (
-        <li key={index}>First Name: {user.first_name}, Last Name: {user.last_name}, Email: {user.email}</li>
-      ))}
-    </ul>
     </>
   )
 }

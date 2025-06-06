@@ -1,34 +1,37 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { APIProvider, Map, Marker} from "@vis.gl/react-google-maps";
-import { createClient } from "@supabase/supabase-js";
+//import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY)
+//const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY)
 
 function MapComponent(props) {
 
-    const [spots, setSpots] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [markerLocation, setMarkerLocation] = useState({
-        lat: 0,
-        lng: 0
-    });
+  const markerLocation = {
+    lat: parseFloat(props.latitude),
+    lng: parseFloat(props.longitude)
+  };
 
-    useEffect(() => {
-        getSpots();
-    }, []);
+    // const [markerLocation, setMarkerLocation] = useState({
+    //    lat: 0,
+    //    lng: 0
+    // });
 
-    async function getSpots(){
-        const{data} = await supabase.from("fishing_spot").select('*').eq('id', 1);
-        setSpots(data);
-        setLoading(false);
-        const lat = Number(data[0].latitude);
-        const lng = Number(data[0].longitude);
-        let latlng = {
-            lat: lat,
-            lng: lng
-        }
-        setMarkerLocation(latlng);
-    }
+    // useEffect(() => {
+    //     getSpots();
+    // }, []);
+
+    // async function getSpots(){
+    //     const{data} = await supabase.from("fishing_spot").select('*').eq('id', 1);
+    //     setSpots(data);
+    //     setLoading(false);
+    //     const lat = Number(data[0].latitude);
+    //     const lng = Number(data[0].longitude);
+    //     let latlng = {
+    //         lat: lat,
+    //         lng: lng
+    //     }
+    //     setMarkerLocation(latlng);
+    // }
 
   //const markerLocation = {lat: spots[0].latitude, long: props.longitude}
 //      const [markerLocation, setMarkerLocation] = useState({
@@ -36,13 +39,10 @@ function MapComponent(props) {
 //      lng: spots[0].longitude,
 //    });
 
-   if(loading){
-    return <div>Loading... </div>
-   }
 
   return (
     <div className="map-container">
-        <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+        <APIProvider apiKey="AIzaSyCOuW5cj8QqZGDDG232VlN75-OCuAqubvg">
         <Map
             style={{ borderRadius: "20px" }}
             defaultZoom={13}
