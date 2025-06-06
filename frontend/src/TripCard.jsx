@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createClient } from '@supabase/supabase-js';
 import MapComponent from "./MapComponent";
 
+
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
 
 function TripCard({ trip }) {
@@ -22,11 +23,7 @@ function TripCard({ trip }) {
     }
 
     return (
-        <div className="trip-card">
-            <h3>Trip Date: {trip.date}</h3>
-            <p>Notes: {trip.notes}</p>
-            <MapComponent latitude={spot.latitude} longitude={spot.longitude} />
-        </div>
+        <MapComponent latitude={spot.latitude} longitude={spot.longitude} />
     );
 }
 

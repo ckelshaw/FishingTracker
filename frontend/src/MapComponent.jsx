@@ -11,40 +11,11 @@ function MapComponent(props) {
     lng: parseFloat(props.longitude)
   };
 
-    // const [markerLocation, setMarkerLocation] = useState({
-    //    lat: 0,
-    //    lng: 0
-    // });
-
-    // useEffect(() => {
-    //     getSpots();
-    // }, []);
-
-    // async function getSpots(){
-    //     const{data} = await supabase.from("fishing_spot").select('*').eq('id', 1);
-    //     setSpots(data);
-    //     setLoading(false);
-    //     const lat = Number(data[0].latitude);
-    //     const lng = Number(data[0].longitude);
-    //     let latlng = {
-    //         lat: lat,
-    //         lng: lng
-    //     }
-    //     setMarkerLocation(latlng);
-    // }
-
-  //const markerLocation = {lat: spots[0].latitude, long: props.longitude}
-//      const [markerLocation, setMarkerLocation] = useState({
-//      lat: spots[0].latitude,
-//      lng: spots[0].longitude,
-//    });
-
-
   return (
-    <div className="map-container">
+    <>
         <APIProvider apiKey="AIzaSyCOuW5cj8QqZGDDG232VlN75-OCuAqubvg">
         <Map
-            style={{ borderRadius: "20px" }}
+            style={{ borderRadius: "20px", height: "175px", width: "100%" }}
             defaultZoom={13}
             defaultCenter={markerLocation}
             gestureHandling={"greedy"}
@@ -53,7 +24,7 @@ function MapComponent(props) {
             <Marker position={markerLocation} />
         </Map>
       </APIProvider>
-    </div>
+    </>
   );
 }
 
