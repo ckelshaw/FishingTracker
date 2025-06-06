@@ -42,7 +42,7 @@ function MapComponent(props) {
 
   return (
     <div className="map-container">
-        <APIProvider apiKey="AIzaSyA9coR0QtDBdvz9HxupAXoYkIfEnppfKRA">
+        <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
         <Map
             style={{ borderRadius: "20px" }}
             defaultZoom={13}
