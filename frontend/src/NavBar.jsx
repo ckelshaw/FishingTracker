@@ -1,10 +1,27 @@
 import React from "react";
 import logo from "./assets/images/FTLogo.png"
+import './scss/styles.scss';
 
 function NavBar() {
     return (
         <>
-            <nav class="bg-blue-500 border-gray-200 dark:bg-white absolute inset-x-0 top-0 h-22">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    <img src={logo} width="50" height="50" class="d-inline-block alight-top" alt="Fishing Tracker Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-blue-900">Fishing Tracker</span>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Trips</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            {/* <nav class="bg-blue-500 border-gray-200 dark:bg-white absolute inset-x-0 top-0 h-22">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="" class="flex items-start space-x-3 rtl:space-x-reverse">
                         <img src={logo} class="h-16" alt="Fishing Tracker Logo" />
@@ -30,7 +47,7 @@ function NavBar() {
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </nav> */}
         </>
     )
 }

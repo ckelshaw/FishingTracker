@@ -12,7 +12,7 @@ function TripCard({ trip }) {
     useEffect(() => {
         async function getSpot() {
             const { data } = await supabase.from("fishing_spot").select().eq('id', trip.fishing_spot).single();
-            console.log(data);
+            console.log(trip);
             setSpot(data);
         };
         getSpot();
@@ -23,7 +23,13 @@ function TripCard({ trip }) {
     }
 
     return (
-        <MapComponent latitude={spot.latitude} longitude={spot.longitude} />
+        <div class="card shadow mb-2">
+            <h4 class="card-title">{spot.river_name}</h4>
+            <MapComponent latitude={spot.latitude} longitude={spot.longitude} />
+            <p class="card-text">{trip.notes}</p>
+            <p class="card-text">Date: {trip.date}</p>
+            <a href="#" class="btn btn-primary">View</a>
+        </div>
     );
 }
 
